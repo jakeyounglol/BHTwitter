@@ -76,7 +76,7 @@ No option: Build BHTwitter project for rootfull deployment.
 
 # Example Usages
 ## Build for Sideloaded Deployment
-- Download an IPA file for X or Twitter from AppDB or decrypt it by your self.
+- Download an IPA file for Twitter from AppDB or decrypt it by your self.
 - Then rename the IPA file to `com.atebits.Tweetie2.ipa` and move it to `packages` folder.
 ```bash
 ./build.sh --sideloaded
