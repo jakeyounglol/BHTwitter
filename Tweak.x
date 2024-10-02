@@ -866,6 +866,12 @@ static void batchSwizzlingOnClass(Class cls, NSArray<NSString*>*origSelectors, I
     }
     return %orig;
 }
+- (void)_t1_showPremiumUpsellIfNeededWithScribing:(BOOL)arg1 {
+    if ([BHTManager hidePremiumOffer]) {
+        return;
+    }
+    return %orig;
+}
 %end
 
 %hook TFNTwitterMediaUploadConfiguration
@@ -1302,7 +1308,7 @@ static void batchSwizzlingOnClass(Class cls, NSArray<NSString*>*origSelectors, I
                             [safeParams addObject:item];
                         }
                     }
-                    cleanedURL.queryItems = safeParams;
+                    cleanedURL.queryItems = safeParams.count > 0 ? safeParams : nil;
 
                     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"tweet_url_host"]) {
                         NSString *selectedHost = [[NSUserDefaults standardUserDefaults] objectForKey:@"tweet_url_host"];
