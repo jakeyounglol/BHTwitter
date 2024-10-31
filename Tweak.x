@@ -307,6 +307,9 @@ static void batchSwizzlingOnClass(Class cls, NSArray<NSString*>*origSelectors, I
                 [_orig setHidden:true];
             }
         }
+        if ([BHTManager hideTrendVideos] && ([class_name isEqualToString:@"TwitterURT.URTModuleHeaderViewModel"] || [class_name isEqualToString:@"TwitterURT.URTModuleFooterViewModel"] || [class_name isEqualToString:@"T1TwitterSwift.URTTimelineCarouselViewModel"])) {
+            [_orig setHidden:true];
+        }
     }
     
     if ([self.adDisplayLocation isEqualToString:@"TIMELINE_HOME"]) {
@@ -321,6 +324,12 @@ static void batchSwizzlingOnClass(Class cls, NSArray<NSString*>*origSelectors, I
         
         if ([BHTManager HideTopics]) {
             if ([tweet isKindOfClass:%c(_TtC10TwitterURT26URTTimelinePromptViewModel)]) {
+                [_orig setHidden:true];
+            }
+        }
+
+        if ([BHTManager hidePremiumOffer]) {
+            if ([class_name isEqualToString:@"T1URTTimelineMessageItemViewModel"]) {
                 [_orig setHidden:true];
             }
         }
@@ -366,6 +375,10 @@ static void batchSwizzlingOnClass(Class cls, NSArray<NSString*>*origSelectors, I
                 return 0;
             }
         }
+
+        if ([BHTManager hideTrendVideos] && ([class_name isEqualToString:@"TwitterURT.URTModuleHeaderViewModel"] || [class_name isEqualToString:@"TwitterURT.URTModuleFooterViewModel"] || [class_name isEqualToString:@"T1TwitterSwift.URTTimelineCarouselViewModel"])) {
+            return 0;
+        }
     }
     
     if ([self.adDisplayLocation isEqualToString:@"TIMELINE_HOME"]) {
@@ -381,6 +394,12 @@ static void batchSwizzlingOnClass(Class cls, NSArray<NSString*>*origSelectors, I
         
         if ([BHTManager HideTopics]) {
             if ([tweet isKindOfClass:%c(_TtC10TwitterURT26URTTimelinePromptViewModel)]) {
+                return 0;
+            }
+        }
+
+        if ([BHTManager hidePremiumOffer]) {
+            if ([class_name isEqualToString:@"T1URTTimelineMessageItemViewModel"]) {
                 return 0;
             }
         }
